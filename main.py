@@ -41,7 +41,7 @@ def standart_project(project_name, default_project_path, main_file_name):
     # set paths
     project_path = os.path.join(default_project_path, project_name)
     vscode_file_path = os.path.join(project_path, ".vscode")
-    main_file_full_name = os.path.join(project_path, main_file_name)
+    main_file_full_name = os.path.join(project_path, main_file_name+".py")
 
     # create required dirs
     __create_dir_if_not_exists(project_path)
@@ -61,7 +61,7 @@ def github_project(project_name, default_project_path, main_file_name):
     # set paths
     project_path = os.path.join(default_project_path, project_name)
     vscode_file_path = os.path.join(project_path, ".vscode")
-    main_file_full_name = os.path.join(project_path, main_file_name)
+    main_file_full_name = os.path.join(project_path, main_file_name+".py")
 
     # create required dirs
     __create_dir_if_not_exists(project_path)
@@ -119,7 +119,6 @@ if(cfg_dict):
     github_project_files = cfg_dict["github_project_files"]
     pypi_project_files = cfg_dict["pypi_project_files"]
     default_project_path = cfg_dict["default_project_path"]
-    default_file_name = cfg_dict["default_file_name"]
 else:
     print("cfg file is broken")
     sys.exit(0)
@@ -141,10 +140,10 @@ while True:
 project_name = input("Project name: ")
 
 if project_type == 1:
-    standart_project(project_name, default_project_path, default_file_name)
+    standart_project(project_name, default_project_path, project_name)
 
 elif project_type == 2:
-    github_project(project_name, default_project_path, default_file_name)
+    github_project(project_name, default_project_path, project_name)
 
 elif project_type == 3:
     pypi_project(project_name, default_project_path)
